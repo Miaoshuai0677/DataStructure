@@ -36,7 +36,24 @@ public class TreeADT {
 	            preOrder(subTree.leftChild);  
 	            preOrder(subTree.rightChild);  
 	        }  
-	    }  
+	    }
+//非递归,前序遍历.
+  	public void noPreOrder(TreeNode subTree){
+    	 Stack <TreeNode>stack=new Stack<TreeNode>();
+    	 TreeNode p=subTree;
+    	 while(!stack.empty()||p!=null){
+    		 if(p!=null){
+    			 visted(p);
+    			 stack.push(p);
+    			 p=p.leftChild;
+    		 }
+    		 else{
+    			 p=stack.pop();
+    			 p=p.rightChild;
+    		 }
+    		
+    	 }
+     }  
 	       
     public static void main(String[] args) {
 // TODO Auto-generated method stub
