@@ -132,6 +132,54 @@ public class TreeADT {
 			
 		}
 	}
+	 //非递归实现树的高度
+  	public void  high(TreeADT subTree){
+  		int front=0;int rear=0;TreeADT[] Q=new TreeADT [20];int last=1;int level=0;
+  		TreeADT p=subTree;
+  		Q[++rear]=p;
+  		while(front<rear){
+  			p=Q[++front];
+  			if(p.leftChild != null){
+  				Q[++rear]=p.leftChild;
+  			}
+  			if(p.rightChild!=null){
+  				Q[++rear]=p.rightChild;
+  			}
+  			if(front==last){
+  				level++;
+  				last=rear;
+  			}
+  		}
+  		System.out.println(level);
+  	}
+  	//非递归实现求树的每一层宽度
+  	public void len(TreeADT subTree){
+  		int front=0,rear=0,level=0,last=1,count[]=new int [10];TreeADT[]Q=new TreeADT[20];
+  		count[0]=1;
+  		TreeADT p=subTree;
+  		Q[++rear]=p;
+  		while(front<rear){
+  			p=Q[++front];
+  			if(p.leftChild!=null) {Q[++rear]=p.leftChild;count[level+1]++;}
+  			if(p.rightChild!=null){Q[++rear]=p.rightChild;count[level+1]++;}
+  			if(front==last){
+  				level++;
+  				last=rear;
+  			}
+  		}
+  		for(int i=0;i<level;i++){
+  			System.out.println(count[i]);
+  		}
+  		
+  	}
+  	//递归实现树的高度和宽度
+  	public int  iteratorHigh(TreeADT subTree){
+  		TreeADT p=subTree;
+  		if(p==null){
+  			return 0;
+  		}
+  		else return  iteratorHigh(p.leftChild)>iteratorHigh(p.rightChild)?1+iteratorHigh(p.leftChild):1+iteratorHigh(p.rightChild);
+  	}
     public static void main(String[] args) {
 // TODO Auto-generated method stub
     	TreeADT  root =new TreeADT ("A");
